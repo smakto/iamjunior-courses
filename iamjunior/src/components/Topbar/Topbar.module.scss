@@ -1,0 +1,22 @@
+header {
+  position: sticky;
+  top: 0;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border: 1px solid black;
+  width: 100%;
+  background-color: rgb(199, 199, 229);
+
+  .headerLeft {
+    margin-left: 50px;
+    display: flex;
+    img {
+      width: 150px;
+    }
+  }
+
+  .headerRight {
+    margin-right: 50px;
+  }
+}
