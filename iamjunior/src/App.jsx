@@ -1,13 +1,14 @@
 // import { useState } from "react";
-import "./App.css";
+import { Outlet } from "react-router-dom";
 import { Topbar } from "./components/Topbar/Topbar";
-import { MainPage } from "./components/MainPage/MainPage";
+
+import "./App.css";
 
 export function App() {
   return (
     <>
       <Topbar />
-      <MainPage />
+      <Outlet />
     </>
   );
 }

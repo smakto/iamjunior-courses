@@ -1,5 +1,6 @@
 import styles from "./CategoryField.module.scss";
 import { CategoryCard } from "./CategoryCard/CategoryCard";
+import { useNavigate } from "react-router-dom";
 
 const categories = [
   {
@@ -17,6 +18,12 @@ const categories = [
 ];
 
 export function CategoryField() {
+  const navigate = useNavigate("");
+
+  function handleClick(category) {
+    navigate(`/search/${category}`);
+  }
+
   return (
     <div className={styles.categoryDiv}>
       {categories.map((category, index) => (
@@ -25,6 +32,9 @@ export function CategoryField() {
           icon={category.img}
           header={category.name}
           cardClass={styles.categoryCard}
+          clickEvent={() => {
+            handleClick(category.name);
+          }}
         />
       ))}
     </div>

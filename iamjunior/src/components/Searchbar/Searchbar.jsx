@@ -8,8 +8,6 @@ export function Searchbar() {
     setSearchInput(event.target.value);
   }
 
-  console.log(searchInput);
-
   return (
     <form className={styles.searchForm}>
       <input
