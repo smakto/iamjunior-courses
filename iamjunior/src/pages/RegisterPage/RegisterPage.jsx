@@ -1,9 +1,9 @@
 import { NavLink } from "react-router-dom";
 
-export function LoginPage() {
+export function RegisterPage() {
   return (
-    <div className="login-container">
-      <h2>Login</h2>
+    <div className="register-container">
+      <h2>Register</h2>
       <form>
         <div>
           <label>Email:</label>
@@ -13,10 +13,14 @@ export function LoginPage() {
           <label>Password:</label>
           <input type="password" placeholder="Enter password" />
         </div>
-        <button type="submit">Login</button>
+        <div>
+          <label>Confirm Password:</label>
+          <input type="password" placeholder="Confirm password" />
+        </div>
+        <button type="submit">Register</button>
       </form>
       <p>
-        Don't have an account? <NavLink to="/register">Register here</NavLink>
+        Already have an account? <NavLink to="/login">Login here</NavLink>
       </p>
     </div>
   );
