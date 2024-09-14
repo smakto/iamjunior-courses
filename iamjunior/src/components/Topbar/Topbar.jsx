@@ -14,7 +14,7 @@ export function Topbar() {
     <header className={styles.header}>
       <div className={styles.headerLeft}>
         <img
-          src="https://cdn.worldvectorlogo.com/logos/lorem-lorem-1.svg"
+          src="https://seeklogo.com/images/L/Lorem_Ipsum-logo-1662AFAE6D-seeklogo.com.png"
           alt="Logo"
         ></img>
         <nav>

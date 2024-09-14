@@ -1,0 +1,51 @@
+.serviceContainer {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+
+  .serviceCard {
+    margin: 5px;
+    border: 1px solid #bdbdbd;
+    border-radius: 3px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+
+    div.cardTop {
+      img {
+        width: 250px;
+      }
+    }
+
+    div.cardBottom {
+      > * {
+        margin: 10px;
+      }
+
+      h6 {
+        width: fit-content;
+        padding: 5px;
+        border-radius: 10px;
+        border: 1px solid rgb(186, 186, 186);
+        background-color: rgb(187, 123, 187);
+        color: rgb(12, 12, 86);
+        font-weight: 500;
+      }
+
+      button {
+        width: fit-content;
+        padding: 10px;
+        border-radius: 10px;
+        border: 1px solid rgb(186, 186, 186);
+        background-color: rgb(58, 5, 58);
+        color: white;
+        font-weight: 500;
+      }
+    }
+
+    &:hover {
+      transform: scale(1.1);
+      transition: 100ms;
+    }
+  }
+}

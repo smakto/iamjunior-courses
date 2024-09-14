@@ -4,24 +4,36 @@ header {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  border: 1px solid black;
   width: 100%;
-  background-color: rgb(199, 199, 229);
+  margin-bottom: 5px;
+  padding: 15px;
+  border-bottom: 1px solid rgb(200, 200, 200);
+  background-color: whitesmoke;
 
   .headerLeft {
     margin-left: 50px;
     display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 30%;
+
     img {
       width: 150px;
     }
 
     nav > * {
       text-decoration: none;
-      margin: 5px;
+      margin: 15px;
     }
   }
 
   .headerRight {
-    margin-right: 50px;
+    margin-right: 100px;
+    display: flex;
+    align-items: center;
+
+    button {
+      margin: auto;
+    }
   }
 }
