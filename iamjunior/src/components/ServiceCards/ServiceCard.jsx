@@ -8,6 +8,8 @@ export function ServiceCard({
   surname,
   address,
   category,
+  favoriteMark,
+  handleFavoriteMark,
 }) {
   return (
     <div className={styles.serviceCard}>
@@ -15,6 +17,7 @@ export function ServiceCard({
         <img src={imgSrc} alt={imgAlt}></img>
       </div>
       <div className={styles.cardBottom}>
+        <img src={favoriteMark} onClick={handleFavoriteMark}></img>
         <h6>{category}</h6>
         <h3>{title}</h3>
         <h5>
