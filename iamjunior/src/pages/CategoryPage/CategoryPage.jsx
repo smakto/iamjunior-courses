@@ -2,10 +2,16 @@ import { useParams } from "react-router-dom";
 import { services } from "../../data/data";
 import { useFilterCategories } from "../../hooks/FilterCategories";
 import { ServiceCard } from "../../components/ServiceCards/ServiceCard";
+import { useEffect } from "react";
 
 export function CategoryPage() {
   const category = useParams();
   const { data } = useFilterCategories({ services, category });
+
+  useEffect(() => {
+    let favoriteData = JSON.parse(localStorage.getItem("favoriteServices"));
+    console.log(favoriteData);
+  }, []);
 
   return data.map((service, index) => (
     <ServiceCard

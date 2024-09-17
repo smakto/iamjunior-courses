@@ -2,9 +2,11 @@ import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Topbar.module.scss";
 
 import { routes } from "../../router/router";
+import { useLoginStore } from "../../pages/LoginPage/useLoginStore";
 
 export function Topbar() {
   const navigate = useNavigate("");
+  const user = useLoginStore((state) => state.currentUser);
 
   function navToLoginPage() {
     navigate(routes.login);
@@ -24,7 +26,14 @@ export function Topbar() {
         </nav>
       </div>
       <div className={styles.headerRight}>
-        <button onClick={navToLoginPage}>Login / Sign-up</button>
+        {user ? (
+          <>
+            <div>{user}</div>
+            <button>Logout</button>
+          </>
+        ) : (
+          <button onClick={navToLoginPage}>Login / Sign-up</button>
+        )}
       </div>
     </header>
   );

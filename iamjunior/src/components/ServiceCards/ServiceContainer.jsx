@@ -1,11 +1,18 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { ServiceCard } from "./ServiceCard";
 import styles from "./ServiceCards.module.scss";
 import { services as initialServices } from "../../data/data";
 import { favoriteMarkers } from "../../data/data";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { useLocalStorage } from "../../hooks/LocalStorage";
 
 export function ServiceContainer() {
   const [services, setServices] = useState(initialServices);
+  const { saveFavorites } = useLocalStorage({ services });
+
+  useEffect(() => {
+    saveFavorites();
+  }, [services]);
 
   function handleFavoriteMark(favService) {
     const updatedServices = services.map((service) => {

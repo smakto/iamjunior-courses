@@ -1,0 +1,86 @@
+$primary-color: rgb(122, 105, 201);
+$button-bg-color: rgb(58, 5, 58);
+$button-hover-bg: rgb(187, 123, 187);
+$background-color: whitesmoke;
+$text-color: rgb(58, 5, 58);
+
+.loginContainer {
+  background-color: $background-color;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 50px;
+  // height: 100vh;
+}
+
+.loginBox {
+  background-color: white;
+  padding: 40px;
+  border-radius: 10px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+  text-align: center;
+}
+
+h2 {
+  color: $primary-color;
+  margin-bottom: 20px;
+  font-size: 24px;
+}
+
+.inputGroup {
+  margin-bottom: 20px;
+  text-align: left;
+
+  label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: $text-color;
+  }
+
+  input {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid $primary-color;
+    border-radius: 5px;
+    font-size: 14px;
+
+    &:focus {
+      outline: none;
+      border-color: $button-bg-color;
+    }
+  }
+}
+
+.loginButton {
+  width: 100%;
+  padding: 12px;
+  background-color: $button-bg-color;
+  color: white;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+
+  &:hover {
+    background-color: $button-hover-bg;
+  }
+}
+
+.registerLink {
+  margin-top: 20px;
+  font-size: 14px;
+  color: $text-color;
+
+  a {
+    color: $primary-color;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
