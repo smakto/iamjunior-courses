@@ -1,8 +1,12 @@
 import { create } from "zustand";
 
+const userInfo = JSON.parse(localStorage.getItem("loggedUserInfo"));
+
 export const useLoginStore = create((set) => ({
-  currentUser: "",
-  logIn: (newUser) => set({ currentUser: newUser }),
+  currentUser: userInfo ? userInfo.username : "",
+  logged: userInfo ? true : false,
+  logIn: (newUser) => set({ currentUser: newUser, logged: true }),
+  logOut: () => set({ currentUser: "", logged: false }),
 }));
 
 // loggedIn: false,

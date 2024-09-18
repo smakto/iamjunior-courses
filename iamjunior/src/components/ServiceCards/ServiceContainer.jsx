@@ -8,10 +8,10 @@ import { useLocalStorage } from "../../hooks/LocalStorage";
 
 export function ServiceContainer() {
   const [services, setServices] = useState(initialServices);
-  const { saveFavorites } = useLocalStorage({ services });
+  const { saveFavorites } = useLocalStorage();
 
   useEffect(() => {
-    saveFavorites();
+    saveFavorites(services);
   }, [services]);
 
   function handleFavoriteMark(favService) {

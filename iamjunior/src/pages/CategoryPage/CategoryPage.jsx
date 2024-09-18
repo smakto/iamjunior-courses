@@ -9,8 +9,7 @@ export function CategoryPage() {
   const { data } = useFilterCategories({ services, category });
 
   useEffect(() => {
-    let favoriteData = JSON.parse(localStorage.getItem("favoriteServices"));
-    console.log(favoriteData);
+    JSON.parse(localStorage.getItem("favoriteServices"));
   }, []);
 
   return data.map((service, index) => (

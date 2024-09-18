@@ -4,20 +4,27 @@ import styles from "./LoginPage.module.scss";
 import { useLoginStore } from "./useLoginStore";
 import { useState } from "react";
 import { routes } from "../../router/router";
+import { useLocalStorage } from "../../hooks/LocalStorage";
 
 export function LoginPage() {
   const user = useLoginStore((state) => state.currentUser);
   const logIn = useLoginStore((state) => state.logIn);
-  const [userName, setUserName] = useState("");
+
+  const [userInfo, setUserInfo] = useState({ username: "", password: "" });
+  const { saveUserInfo } = useLocalStorage();
   const navigate = useNavigate();
 
-  function handleUserNameInput(event) {
-    setUserName(event.target.value);
+  function handleFormInput(input, event) {
+    setUserInfo({
+      ...userInfo,
+      [input]: event.target.value,
+    });
   }
 
   function handleLogin(event) {
     event.preventDefault();
-    logIn(userName);
+    logIn(userInfo.username);
+    saveUserInfo(userInfo);
     navigate(routes.home);
   }
 
@@ -31,12 +38,20 @@ export function LoginPage() {
             <input
               type="text"
               placeholder="Enter username"
-              onChange={handleUserNameInput}
+              onChange={(event) => {
+                handleFormInput("username", event);
+              }}
             />
           </div>
           <div className={styles.inputGroup}>
             <label>Password</label>
-            <input type="password" placeholder="Enter password" />
+            <input
+              type="password"
+              placeholder="Enter password"
+              onChange={(event) => {
+                handleFormInput("password", event);
+              }}
+            />
           </div>
           <button
             type="submit"
@@ -47,7 +62,8 @@ export function LoginPage() {
           </button>
         </form>
         <p className={styles.registerLink}>
-          Don't have an account? <NavLink to="/register">Register here</NavLink>
+          Don't have an account?
+          <NavLink to={routes.register}>Register here</NavLink>
         </p>
       </div>
     </div>

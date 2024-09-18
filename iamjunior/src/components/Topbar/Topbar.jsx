@@ -1,14 +1,21 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Topbar.module.scss";
-
 import { routes } from "../../router/router";
 import { useLoginStore } from "../../pages/LoginPage/useLoginStore";
 
 export function Topbar() {
   const navigate = useNavigate("");
   const user = useLoginStore((state) => state.currentUser);
+  const loggedStatus = useLoginStore((state) => state.logged);
+  const logOut = useLoginStore((state) => state.logOut);
 
   function navToLoginPage() {
+    navigate(routes.login);
+  }
+
+  function handleLogout() {
+    logOut();
+    localStorage.removeItem("loggedUserInfo");
     navigate(routes.login);
   }
 
@@ -26,10 +33,10 @@ export function Topbar() {
         </nav>
       </div>
       <div className={styles.headerRight}>
-        {user ? (
+        {loggedStatus ? (
           <>
             <div>{user}</div>
-            <button>Logout</button>
+            <button onClick={handleLogout}>Logout</button>
           </>
         ) : (
           <button onClick={navToLoginPage}>Login / Sign-up</button>
