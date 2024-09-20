@@ -1,30 +1,25 @@
-/* eslint-disable no-unused-vars */
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./LoginPage.module.scss";
 import { useLoginStore } from "./useLoginStore";
 import { useState } from "react";
 import { routes } from "../../router/router";
-import { useLocalStorage } from "../../hooks/LocalStorage";
 
 export function LoginPage() {
-  const user = useLoginStore((state) => state.currentUser);
-  const logIn = useLoginStore((state) => state.logIn);
-
+  const { logIn } = useLoginStore();
   const [userInfo, setUserInfo] = useState({ username: "", password: "" });
-  const { saveUserInfo } = useLocalStorage();
   const navigate = useNavigate();
 
-  function handleFormInput(input, event) {
+  function handleFormInput(event) {
     setUserInfo({
       ...userInfo,
-      [input]: event.target.value,
+      [event.target.name]: event.target.value,
     });
   }
 
   function handleLogin(event) {
     event.preventDefault();
     logIn(userInfo.username);
-    saveUserInfo(userInfo);
+    localStorage.setItem("loggedUserInfo", JSON.stringify(userInfo));
     navigate(routes.home);
   }
 
@@ -37,9 +32,10 @@ export function LoginPage() {
             <label>Username</label>
             <input
               type="text"
+              name="username"
               placeholder="Enter username"
               onChange={(event) => {
-                handleFormInput("username", event);
+                handleFormInput(event);
               }}
             />
           </div>
@@ -47,9 +43,10 @@ export function LoginPage() {
             <label>Password</label>
             <input
               type="password"
+              name="password"
               placeholder="Enter password"
               onChange={(event) => {
-                handleFormInput("password", event);
+                handleFormInput(event);
               }}
             />
           </div>

@@ -1,24 +1,4 @@
 .categoryDiv {
   display: flex;
   margin-top: 20px;
-
-  .categoryCard {
-    width: 150px;
-    height: 150px;
-    border: 1px solid #bdbdbd;
-    border-radius: 3px;
-    margin: 5px;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    padding: 15px;
-    &:hover {
-      transform: scale(1.1);
-      transition: 100ms;
-    }
-  }
-  &:hover {
-    cursor: pointer;
-  }
 }

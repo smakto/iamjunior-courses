@@ -4,10 +4,8 @@ import { routes } from "../../router/router";
 import { useLoginStore } from "../../pages/LoginPage/useLoginStore";
 
 export function Topbar() {
-  const navigate = useNavigate("");
-  const user = useLoginStore((state) => state.currentUser);
-  const loggedStatus = useLoginStore((state) => state.logged);
-  const logOut = useLoginStore((state) => state.logOut);
+  const navigate = useNavigate();
+  const { currentUser, logged, logOut } = useLoginStore();
 
   function navToLoginPage() {
     navigate(routes.login);
@@ -33,9 +31,9 @@ export function Topbar() {
         </nav>
       </div>
       <div className={styles.headerRight}>
-        {loggedStatus ? (
+        {logged ? (
           <>
-            <div>{user}</div>
+            <div>{currentUser}</div>
             <button onClick={handleLogout}>Logout</button>
           </>
         ) : (

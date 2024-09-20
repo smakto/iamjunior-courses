@@ -8,7 +8,22 @@ import { useLocalStorage } from "../../hooks/LocalStorage";
 
 export function ServiceContainer() {
   const [services, setServices] = useState(initialServices);
-  const { saveFavorites } = useLocalStorage();
+  const { saveFavorites, getFavorites } = useLocalStorage();
+
+  // useEffect(() => {
+  //   let savedFavs = getFavorites();
+  //   if (savedFavs) {
+  //     savedFavs.forEach((fav) => {
+  //       let favoriteService = services.find(
+  //         (favorite) => favorite.id === fav.id
+  //       );
+
+  //       let index = services.indexOf(favoriteService);
+  //       services.splice(index, 1, favoriteService);
+  //       setServices(services);
+  //     });
+  //   }
+  // }, []);
 
   useEffect(() => {
     saveFavorites(services);
@@ -16,11 +31,7 @@ export function ServiceContainer() {
 
   function handleFavoriteMark(favService) {
     const updatedServices = services.map((service) => {
-      if (
-        service.title === favService.title &&
-        service.name === favService.name &&
-        service.surname === favService.surname
-      ) {
+      if (service.id === favService.id) {
         return { ...service, favorite: !service.favorite };
       }
       return service;

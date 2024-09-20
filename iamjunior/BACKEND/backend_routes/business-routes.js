@@ -26,7 +26,7 @@ const business = [
 
 businessRouter.get("/", (req, res) => {
   try {
-    res.json(business);
+    res.status(200).json(business);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -35,7 +35,7 @@ businessRouter.get("/", (req, res) => {
 businessRouter.get("/:id", (req, res) => {
   const businessById = business.filter((b) => b.id === parseInt(req.params.id));
   try {
-    res.json(businessById);
+    res.status(200).json(businessById);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -43,31 +43,65 @@ businessRouter.get("/:id", (req, res) => {
 
 businessRouter.get("/category/:category", (req, res) => {
   const filteredBusiness = business.filter(
-    (b) => b.category === req.params.category
+    (b) => b.category.toLocaleUpperCase() === req.params.category.toLowerCase()
   );
   try {
-    res.json(filteredBusiness);
+    res.status(200).json(filteredBusiness);
   } catch (error) {
     res.status(500).send(error);
   }
 });
 
 businessRouter.post("/", (req, res) => {
+  const { id, name, about, address, category, contactPerson, email, imageUrl } =
+    req.body;
+
+  if (
+    !id ||
+    !name ||
+    !about ||
+    !address ||
+    !category ||
+    !contactPerson ||
+    !email ||
+    !imageUrl
+  ) {
+    return res.status(400).json({
+      message:
+        "All fields are required. Re-submit request with complete information.",
+    });
+  }
+
+  if (
+    typeof id !== "number" ||
+    typeof name !== "string" ||
+    typeof about !== "string" ||
+    typeof address !== "string" ||
+    typeof category !== "string" ||
+    typeof contactPerson !== "string" ||
+    typeof email !== "string" ||
+    typeof imageUrl !== "string"
+  ) {
+    return res.status(400).json({
+      message: "Invalid data type for one or more fields.",
+    });
+  }
+
   const newBusiness = {
-    id: req.body.id,
-    name: req.body.name,
-    about: req.body.business,
-    address: req.body.address,
-    category: req.body.category,
-    contactPerson: req.body.contactPerson,
-    email: req.body.email,
-    images: [{ url: req.body.imageUrl }],
+    id,
+    name,
+    about,
+    address,
+    category,
+    contactPerson,
+    email,
+    images: [{ url: imageUrl }],
   };
   try {
     business.push(newBusiness);
-    res.json(newBusiness);
+    res.status(201).json(newBusiness);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ message: "Creating new business failed.", error });
   }
 });
 
@@ -87,8 +121,8 @@ businessRouter.put("/:id", (req, res) => {
         ? [{ url: req.body.imageUrl }]
         : businessById.images;
       res.status(200).json(businessById);
-    } catch {
-      res.status(500).send("Error updating the business");
+    } catch (error) {
+      res.status(500).send({ message: "Error updating the business", error });
     }
   } else {
     res.status(404).send("Business with this ID not found");

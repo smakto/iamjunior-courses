@@ -6,9 +6,13 @@ export function useLocalStorage() {
     localStorage.setItem("favoriteServices", JSON.stringify(updatedFavs));
   }
 
-  function saveUserInfo(userInfo) {
-    localStorage.setItem("loggedUserInfo", JSON.stringify(userInfo));
+  function getFavorites() {
+    try {
+      return JSON.parse(localStorage.getItem("favoriteServices"));
+    } catch (error) {
+      console.error(error);
+    }
   }
 
-  return { saveFavorites, saveUserInfo };
+  return { saveFavorites, getFavorites };
 }

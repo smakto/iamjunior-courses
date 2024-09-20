@@ -25,13 +25,14 @@ categoriesRouter.get("/", (req, res) => {
 });
 
 categoriesRouter.post("/", (req, res) => {
-  const newCategory = { id: req.body.id, category: req.body.name };
+  const { id, name, bgcolor, icon } = req.body;
+  const newCategory = { id, name, bgcolor, icon };
 
   try {
     categories.push(newCategory);
     res.status(201).json(newCategory);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ message: "Failed to add categoery", error });
   }
 });
 

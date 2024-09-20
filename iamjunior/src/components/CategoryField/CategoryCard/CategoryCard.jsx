@@ -1,6 +1,8 @@
-export function CategoryCard({ icon, header, cardClass, clickEvent, iconAlt }) {
+import styles from "./CategoryCard.module.scss";
+
+export function CategoryCard({ icon, header, onClick, iconAlt }) {
   return (
-    <div className={cardClass} onClick={clickEvent}>
+    <div className={styles.categoryCard} onClick={onClick}>
       <img src={icon} alt={iconAlt}></img>
       <h5>{header}</h5>
     </div>

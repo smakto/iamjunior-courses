@@ -9,15 +9,27 @@ export function RegisterPage() {
         <form>
           <div className={styles.inputGroup}>
             <label>Email</label>
-            <input type="email" placeholder="Enter email" />
+            <input
+              type="email"
+              name="registerEmail"
+              placeholder="Enter email"
+            />
           </div>
           <div className={styles.inputGroup}>
             <label>Password</label>
-            <input type="password" placeholder="Enter password" />
+            <input
+              type="password"
+              name="registerPassword"
+              placeholder="Enter password"
+            />
           </div>
           <div className={styles.inputGroup}>
             <label>Confirm Password</label>
-            <input type="password" placeholder="Confirm password" />
+            <input
+              type="password"
+              name="registerPasswordConfirm"
+              placeholder="Confirm password"
+            />
           </div>
           <button type="submit" className={styles.registerButton}>
             Register

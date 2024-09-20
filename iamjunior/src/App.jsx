@@ -1,14 +1,7 @@
 // import { useState } from "react";
-import { Outlet } from "react-router-dom";
-import { Topbar } from "./components/Topbar/Topbar";
-
-import "./App.css";
+import { RouterProvider } from "react-router-dom";
+import { router } from "./router/router";
 
 export function App() {
-  return (
-    <>
-      <Topbar />
-      <Outlet />
-    </>
-  );
+  return <RouterProvider router={router} />;
 }

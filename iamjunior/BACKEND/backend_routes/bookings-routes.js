@@ -5,7 +5,7 @@ const bookings = [];
 
 bookingsRouter.get("/", (req, res) => {
   try {
-    res.json(bookings);
+    res.status(200).json(bookings);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -14,7 +14,7 @@ bookingsRouter.get("/", (req, res) => {
 bookingsRouter.get("/user/:email", (req, res) => {
   const userBookings = bookings.filter((b) => b.userEmail === req.params.email);
   try {
-    res.json(userBookings);
+    res.status(200).json(userBookings);
   } catch (error) {
     res.status(500).send(error);
   }
@@ -22,6 +22,26 @@ bookingsRouter.get("/user/:email", (req, res) => {
 
 bookingsRouter.post("/", (req, res) => {
   const { businessId, date, time, userEmail, userName } = req.body;
+
+  if (!businessId || !date || !time || !userEmail || !userName) {
+    return res.status(400).json({
+      message:
+        "All fields are required. Re-submit request with complete information.",
+    });
+  }
+
+  if (
+    typeof businessId !== "number" ||
+    typeof date !== "string" ||
+    typeof time !== "string" ||
+    typeof userEmail !== "string" ||
+    typeof userName !== "string"
+  ) {
+    return res.status(400).json({
+      message: "Invalid data type for one or more fields.",
+    });
+  }
+
   const newBooking = {
     id: bookings.length + 1,
     businessId,
@@ -35,8 +55,8 @@ bookingsRouter.post("/", (req, res) => {
   try {
     bookings.push(newBooking);
     res.status(201).json(newBooking);
-  } catch {
-    res.status(500).send(error);
+  } catch (error) {
+    res.status(500).send({ message: "Failed to post booking.", error });
   }
 });
 
@@ -47,9 +67,9 @@ bookingsRouter.delete("/:id", (req, res) => {
   if (bookingById) {
     try {
       bookings.splice(index, 1);
-      res.status(201).send("Booking deleted");
-    } catch {
-      res.status(500).send(error);
+      res.status(200).send("Booking deleted");
+    } catch (error) {
+      res.status(500).send({ message: "Failed to delete booking.", error });
     }
   } else {
     res.status(404).send("Booking ID not found.");
@@ -63,9 +83,9 @@ bookingsRouter.get("/business/:businessId/date/:date", (req, res) => {
       b.date === String(req.params.date)
   );
   try {
-    res.json(businessBookings);
+    res.status(200).json(businessBookings);
   } catch (error) {
-    res.status(500).send(error);
+    res.status(500).send({ message: "Server error.", error });
   }
 });
 
