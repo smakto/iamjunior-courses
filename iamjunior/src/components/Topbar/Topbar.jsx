@@ -2,6 +2,7 @@ import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Topbar.module.scss";
 import { routes } from "../../router/router";
 import { useLoginStore } from "../../pages/LoginPage/useLoginStore";
+import clsx from "clsx";
 
 export function Topbar() {
   const navigate = useNavigate();
@@ -11,6 +12,7 @@ export function Topbar() {
     navigate(routes.login);
   }
 
+  // To review based on comments:
   function handleLogout() {
     logOut();
     localStorage.removeItem("loggedUserInfo");
@@ -25,9 +27,24 @@ export function Topbar() {
           alt="Logo"
         ></img>
         <nav>
-          <NavLink to={routes.home}>Home</NavLink>
-          <NavLink to={routes.services}>Services</NavLink>
-          <NavLink to={routes.about}>About Us</NavLink>
+          <NavLink
+            className={({ isActive }) => clsx(isActive && styles.active)}
+            to={routes.home}
+          >
+            Home
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => clsx(isActive && styles.active)}
+            to={routes.services}
+          >
+            Services
+          </NavLink>
+          <NavLink
+            className={({ isActive }) => clsx(isActive && styles.active)}
+            to={routes.about}
+          >
+            About Us
+          </NavLink>
         </nav>
       </div>
       <div className={styles.headerRight}>

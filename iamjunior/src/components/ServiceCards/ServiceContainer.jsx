@@ -6,24 +6,13 @@ import { favoriteMarkers } from "../../data/data";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "../../hooks/LocalStorage";
 
-export function ServiceContainer() {
-  const [services, setServices] = useState(initialServices);
-  const { saveFavorites, getFavorites } = useLocalStorage();
+export function ServiceContainer({ data }) {
+  const [services, setServices] = useState(data ? data : initialServices);
+  const { saveFavorites } = useLocalStorage();
 
-  // useEffect(() => {
-  //   let savedFavs = getFavorites();
-  //   if (savedFavs) {
-  //     savedFavs.forEach((fav) => {
-  //       let favoriteService = services.find(
-  //         (favorite) => favorite.id === fav.id
-  //       );
-
-  //       let index = services.indexOf(favoriteService);
-  //       services.splice(index, 1, favoriteService);
-  //       setServices(services);
-  //     });
-  //   }
-  // }, []);
+  useEffect(() => {
+    setServices(data ? data : initialServices);
+  }, [data]);
 
   useEffect(() => {
     saveFavorites(services);

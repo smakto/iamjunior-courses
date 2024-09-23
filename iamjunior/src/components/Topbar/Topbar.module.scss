@@ -9,6 +9,7 @@ header {
   padding: 15px;
   border-bottom: 1px solid rgb(200, 200, 200);
   background-color: whitesmoke;
+  z-index: 999;
 
   .headerLeft {
     margin-left: 50px;
@@ -24,6 +25,10 @@ header {
     nav > * {
       text-decoration: none;
       margin: 15px;
+    }
+
+    .active {
+      font-weight: bold;
     }
   }
 

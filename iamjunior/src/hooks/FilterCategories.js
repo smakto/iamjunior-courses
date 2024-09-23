@@ -2,10 +2,11 @@
 import { useEffect, useState } from "react";
 
 export function useFilterCategories({ services, category }) {
-  const [data, setData] = useState(services);
+  const [initData] = useState(services);
+  const [data, setData] = useState();
 
   useEffect(() => {
-    const filteredData = data.filter((item) => {
+    const filteredData = initData.filter((item) => {
       return item.category.toLowerCase() === category.category;
     });
     setData(filteredData);
