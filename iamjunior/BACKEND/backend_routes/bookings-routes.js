@@ -1,10 +1,9 @@
 const express = require("express");
 const bookingsRouter = express.Router();
 const Booking = require("../backend_models/Bookings");
+const authMiddleware = require("../middlewares/authMiddleware");
 
-const bookings = [];
-
-bookingsRouter.get("/", async (req, res) => {
+bookingsRouter.get("/", authMiddleware, async (req, res) => {
   try {
     const bookings = await Booking.find();
     res.status(200).json(bookings);
@@ -13,7 +12,7 @@ bookingsRouter.get("/", async (req, res) => {
   }
 });
 
-bookingsRouter.get("/user/:email", async (req, res) => {
+bookingsRouter.get("/user/:email", authMiddleware, async (req, res) => {
   try {
     const booking = await Booking.find({ userEmail: req.params.email });
     res.status(200).json(booking);
@@ -32,7 +31,7 @@ bookingsRouter.post("/", async (req, res) => {
   }
 });
 
-bookingsRouter.delete("/:id", async (req, res) => {
+bookingsRouter.delete("/:id", authMiddleware, async (req, res) => {
   try {
     const deletedBooking = await Booking.findByIdAndDelete(req.params.id);
     res.status(200).send("Booking deleted");
@@ -47,7 +46,6 @@ bookingsRouter.get("/business/:businessId/date/:date", async (req, res) => {
       businessId: req.params.businessId,
       date: req.params.date,
     });
-    console.log(req.params.businessId, req.params.date);
     res.status(200).json(businessBookings);
   } catch (error) {
     res.status(500).send({ message: "Server error.", error });

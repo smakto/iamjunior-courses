@@ -8,7 +8,7 @@ const businessSchema = new mongoose.Schema(
     category: { type: String, required: true },
     contactPerson: { type: String, required: true },
     email: { type: String, required: true },
-    images: { type: String },
+    images: [{ url: { type: String } }],
   },
   { timestamps: false, versionKey: false }
 );

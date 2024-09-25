@@ -1,6 +1,7 @@
 const express = require("express");
 const businessRouter = express.Router();
 const Business = require("../backend_models/Businesses");
+const authMiddleware = require("../middlewares/authMiddleware");
 
 const business = [
   {
@@ -52,7 +53,7 @@ businessRouter.get("/category/:category", async (req, res) => {
   }
 });
 
-businessRouter.post("/", async (req, res) => {
+businessRouter.post("/", authMiddleware, async (req, res) => {
   const newBusiness = new Business(req.body);
   try {
     const savedBusiness = await newBusiness.save();
@@ -62,7 +63,7 @@ businessRouter.post("/", async (req, res) => {
   }
 });
 
-businessRouter.put("/:id", async (req, res) => {
+businessRouter.put("/:id", authMiddleware, async (req, res) => {
   try {
     const updatedBusiness = await Business.findByIdAndUpdate(
       req.params.id,

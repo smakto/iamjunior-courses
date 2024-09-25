@@ -1,21 +1,7 @@
 const express = require("express");
 const categoriesRouter = express.Router();
 const Category = require("../backend_models/Categories");
-
-const categories = [
-  {
-    id: 1,
-    name: "Food",
-    bgcolor: { hex: "#f00" },
-    icon: { url: "http://example.com/icon1.png" },
-  },
-  {
-    id: 2,
-    name: "Retail",
-    bgcolor: { hex: "#0f0" },
-    icon: { url: "http://example.com/icon2.png" },
-  },
-];
+const authMiddleware = require("../middlewares/authMiddleware");
 
 categoriesRouter.get("/", async (req, res) => {
   try {
@@ -26,7 +12,7 @@ categoriesRouter.get("/", async (req, res) => {
   }
 });
 
-categoriesRouter.post("/", async (req, res) => {
+categoriesRouter.post("/", authMiddleware, async (req, res) => {
   const newCategory = new Category(req.body);
 
   try {
