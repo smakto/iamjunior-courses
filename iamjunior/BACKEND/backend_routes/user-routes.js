@@ -6,9 +6,9 @@ const authMiddleware = require("../middlewares/authMiddleware.js");
 userRouter.get("/", authMiddleware, async (req, res) => {
   try {
     const users = await User.find();
-    return res.json(users);
-  } catch (err) {
-    return res.status(500).json(err);
+    return res.status(200).json(users);
+  } catch (error) {
+    return res.status(500).send(error);
   }
 });
 
