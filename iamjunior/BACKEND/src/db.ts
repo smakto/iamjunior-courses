@@ -3,11 +3,11 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-const PORT = process.env.PORT || 8080;
+const MONGODB_URI = process.env.PORT || 8080;
 
 async function connectToDb() {
   try {
-    await mongoose.connect(process.env.CONNECTION, { dbName: "iamjunior" });
+    await mongoose.connect(MONGODB_URI, { dbName: "iamjunior" });
     console.log("Connected to MongoDB with Mongoose");
   } catch (error) {
     console.error("Could not connect to the database", error);
@@ -15,4 +15,4 @@ async function connectToDb() {
   }
 }
 
-module.exports = { connectToDb, PORT };
+export { connectToDb, MONGODB_URI };
