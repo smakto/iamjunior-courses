@@ -1,12 +1,12 @@
-const categoriesRouter = require("../backend_routes/categories-routes");
-const businessRouter = require("../backend_routes/business-routes");
-const bookingsRouter = require("../backend_routes/bookings-routes");
-const userRouter = require("../backend_routes/user-routes");
-const authRouter = require("../backend_routes/auth-routes");
-import { connectToDb, MONGODB_URI } from "./db";
+import categoriesRouter from "./backend_routes/categories-routes";
+import businessRouter from "./backend_routes/business-routes";
+import bookingsRouter from "./backend_routes/bookings-routes";
+import userRouter from "./backend_routes/user-routes";
+import authRouter from "./backend_routes/auth-routes";
+import { connectToDb, PORT } from "./db";
 
-const express = require("express");
-const cors = require("cors");
+import express from "express";
+import cors from "cors";
 
 const app = express();
 app.use(cors());
@@ -15,13 +15,11 @@ app.use("/categories", categoriesRouter);
 app.use("/business", businessRouter);
 app.use("/bookings", bookingsRouter);
 app.use("/user", userRouter);
-app.use("/auth", bookingsRouter);
+app.use("/auth", authRouter);
 
 connectToDb()
   .then(() => {
-    app.listen(MONGODB_URI, () =>
-      console.log(`Server is running on ${MONGODB_URI}`)
-    );
+    app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
   })
   .catch((error) => {
     console.error("Failed to connect to the database", error);

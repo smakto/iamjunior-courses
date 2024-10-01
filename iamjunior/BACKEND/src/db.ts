@@ -1,13 +1,21 @@
-const mongoose = require("mongoose");
-const dotenv = require("dotenv");
+import mongoose from "mongoose";
+import dotenv from "dotenv";
 
 dotenv.config();
 
-const MONGODB_URI = process.env.PORT || 8080;
+const PORT = process.env.PORT ?? 8080;
 
 async function connectToDb() {
   try {
-    await mongoose.connect(MONGODB_URI, { dbName: "iamjunior" });
+    const url = process.env.CONNECTION;
+
+    if (!url) {
+      throw new Error(
+        "MongoDB connection URL is not set in environment variables."
+      );
+    }
+
+    await mongoose.connect(url, { dbName: "iamjunior" });
     console.log("Connected to MongoDB with Mongoose");
   } catch (error) {
     console.error("Could not connect to the database", error);
@@ -15,4 +23,4 @@ async function connectToDb() {
   }
 }
 
-export { connectToDb, MONGODB_URI };
+export { connectToDb, PORT };

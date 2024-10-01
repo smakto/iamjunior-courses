@@ -1,6 +1,15 @@
-const mongoose = require("mongoose");
+import mongoose, { Types } from "mongoose";
 
-const bookingsSchema = new mongoose.Schema(
+type BookingBlueprint = {
+  businessId: Types.ObjectId;
+  date: Date;
+  time: string;
+  userEmail: string;
+  userName: string;
+  status: "New" | "Confirmed" | "Pending" | "Cancelled";
+};
+
+const bookingsSchema = new mongoose.Schema<BookingBlueprint>(
   {
     businessId: {
       type: mongoose.Schema.Types.ObjectId,
@@ -16,5 +25,5 @@ const bookingsSchema = new mongoose.Schema(
   { timestamps: true, versionKey: false }
 );
 
-const Booking = mongoose.model("Booking", bookingsSchema);
-module.exports = Booking;
+const Booking = mongoose.model<BookingBlueprint>("Booking", bookingsSchema);
+export default Booking;

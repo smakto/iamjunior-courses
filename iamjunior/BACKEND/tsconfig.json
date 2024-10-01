@@ -5,6 +5,7 @@
     "outDir": "./dist", // Nustato išvesties struktūrą į šį katalogą
     "rootDir": "./src", // Nustato įvesties failų šakninį katalogą
     "strict": true, // Įjungia visus griežtus tipo tikrinimo nustatymus
+    "moduleResolution": "node",
     "esModuleInterop": true, // Įgalina suderinamumą su CommonJS ir ES moduliais
     "skipLibCheck": true, // Praleidžia deklaracijų failų tikrinimą
     "forceConsistentCasingInFileNames": true // Draudžia nevienodai atitinkančius failų pavadinimus
