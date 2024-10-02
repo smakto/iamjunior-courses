@@ -1,7 +1,7 @@
 import { NavLink } from "react-router-dom";
 import styles from "./registerPage.module.scss";
 
-export function RegisterPage() {
+export const RegisterPage: React.FC = () => {
   return (
     <div className={styles.registerContainer}>
       <div className={styles.registerBox}>
@@ -41,4 +41,4 @@ export function RegisterPage() {
       </div>
     </div>
   );
-}
+};

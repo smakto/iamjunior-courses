@@ -5,13 +5,13 @@ import { CategoryField } from "../../components/CategoryField/CategoryField";
 import { ServiceContainer } from "../../components/ServiceCards/ServiceContainer";
 
 export function CategoryPage() {
-  const category = useParams();
-  const { data } = useFilterCategories({ services, category });
+  let { category } = useParams<{ category: string }>();
+  const { data } = useFilterCategories({ services, category: category || "" });
 
   return (
     <div>
       <CategoryField />
-      <ServiceContainer data={data} />
+      <ServiceContainer data={data || []} />
     </div>
   );
 }

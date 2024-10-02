@@ -5,8 +5,13 @@ import { services as initialServices } from "../../data/data";
 import { favoriteMarkers } from "../../data/data";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "../../hooks/LocalStorage";
+import { Service } from "./types-service";
 
-export function ServiceContainer({ data }) {
+type ServiceContainerProps = {
+  data: Service[];
+};
+
+export const ServiceContainer: React.FC<ServiceContainerProps> = ({ data }) => {
   const [services, setServices] = useState(data ? data : initialServices);
   const { saveFavorites } = useLocalStorage();
 
@@ -18,9 +23,9 @@ export function ServiceContainer({ data }) {
     saveFavorites(services);
   }, [services]);
 
-  function handleFavoriteMark(favService) {
+  function handleFavoriteMark(favService: Service) {
     const updatedServices = services.map((service) => {
-      if (service.id === favService.id) {
+      if (service._id === favService._id) {
         return { ...service, favorite: !service.favorite };
       }
       return service;
@@ -30,26 +35,18 @@ export function ServiceContainer({ data }) {
 
   return (
     <div className={styles.serviceContainer}>
-      {services.map((service, index) => {
+      {services.map((itm) => {
         return (
           <ServiceCard
-            key={index}
-            imgSrc={service.img}
-            imgAlt={service.imgAlt}
-            title={service.title}
-            category={service.category}
-            name={service.name}
-            surname={service.surname}
-            address={service.address}
-            favoriteMark={
-              service.favorite ? favoriteMarkers.true : favoriteMarkers.false
+            key={itm._id}
+            service={itm}
+            favoriteMarker={
+              itm.favorite ? favoriteMarkers.true : favoriteMarkers.false
             }
-            handleFavoriteMark={() => {
-              handleFavoriteMark(service);
-            }}
+            handleFavoriteMark={() => handleFavoriteMark(itm)}
           />
         );
       })}
     </div>
   );
-}
+};

@@ -1,4 +1,4 @@
-// import uniqid from "uniqid";
+import uniqid from "uniqid";
 
 export const categories = [
   {
@@ -29,9 +29,11 @@ export const categories = [
 
 export const services = [
   {
-    // id: uniqid(),
-    id: 1,
-    img: "https://www.bhg.com.au/wp-content/uploads/sites/12/media/21117/cleaner.jpg",
+    _id: uniqid(),
+    imgUrl:
+      "https://www.bhg.com.au/wp-content/uploads/sites/12/media/21117/cleaner.jpg",
+    imgAlt:
+      "https://www.bhg.com.au/wp-content/uploads/sites/12/media/21117/cleaner.jpg",
     title: "House cleaning",
     category: "Cleaning",
     name: "Amanda",
@@ -40,9 +42,11 @@ export const services = [
     favorite: false,
   },
   {
-    // id: uniqid(),
-    id: 2,
-    img: "https://media.istockphoto.com/id/2122076165/photo/air-conditioner-service-outdoor-checking-fix-repair-air-conditioner-cleaning-technician-he.jpg?s=612x612&w=0&k=20&c=SM-tKNDbCJZoTzbG-Ik-7Zc4H0sf3phR66cw__86tuU=",
+    _id: uniqid(),
+    imgUrl:
+      "https://media.istockphoto.com/id/2122076165/photo/air-conditioner-service-outdoor-checking-fix-repair-air-conditioner-cleaning-technician-he.jpg?s=612x612&w=0&k=20&c=SM-tKNDbCJZoTzbG-Ik-7Zc4H0sf3phR66cw__86tuU=",
+    imgAlt:
+      "https://media.istockphoto.com/id/2122076165/photo/air-conditioner-service-outdoor-checking-fix-repair-air-conditioner-cleaning-technician-he.jpg?s=612x612&w=0&k=20&c=SM-tKNDbCJZoTzbG-Ik-7Zc4H0sf3phR66cw__86tuU=",
     title: "Various repairs",
     category: "Repair",
     name: "John",
@@ -51,9 +55,11 @@ export const services = [
     favorite: false,
   },
   {
-    // id: uniqid(),
-    id: 3,
-    img: "https://previews.123rf.com/images/tverdohlib/tverdohlib1711/tverdohlib171102872/90081950-building-and-construction-working-and-repair-guy-with-repair-roller-on-pink-background-builder-man.jpg",
+    _id: uniqid(),
+    imgUrl:
+      "https://previews.123rf.com/images/tverdohlib/tverdohlib1711/tverdohlib171102872/90081950-building-and-construction-working-and-repair-guy-with-repair-roller-on-pink-background-builder-man.jpg",
+    imgAlt:
+      "https://previews.123rf.com/images/tverdohlib/tverdohlib1711/tverdohlib171102872/90081950-building-and-construction-working-and-repair-guy-with-repair-roller-on-pink-background-builder-man.jpg",
     title: "Room painting",
     category: "Painting",
     name: "Tom",
@@ -62,9 +68,11 @@ export const services = [
     favorite: false,
   },
   {
-    // id: uniqid(),
-    id: 4,
-    img: "https://www.shiftingmovers.com/images/shiftingmovers/about-shifting-movers.jpg",
+    _id: uniqid(),
+    imgUrl:
+      "https://www.shiftingmovers.com/images/shiftingmovers/about-shifting-movers.jpg",
+    imgAlt:
+      "https://www.shiftingmovers.com/images/shiftingmovers/about-shifting-movers.jpg",
     title: "Moving services",
     category: "Shifting",
     name: "Mat",
@@ -73,9 +81,11 @@ export const services = [
     favorite: false,
   },
   {
-    // id: uniqid(),
-    id: 5,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBDzvArpgiQP34h8ifpcNlRB6QHIajvt9_Pg&s",
+    _id: uniqid(),
+    imgUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBDzvArpgiQP34h8ifpcNlRB6QHIajvt9_Pg&s",
+    imgAlt:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQBDzvArpgiQP34h8ifpcNlRB6QHIajvt9_Pg&s",
     title: "Plumber services",
     category: "Plumbing",
     name: "Mario",
@@ -84,9 +94,11 @@ export const services = [
     favorite: false,
   },
   {
-    // id: uniqid(),
-    id: 6,
-    img: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmn7NmFSp4eq7KhwI1bIzRed6-iSPu9s9RUQ&s",
+    _id: uniqid(),
+    imgUrl:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmn7NmFSp4eq7KhwI1bIzRed6-iSPu9s9RUQ&s",
+    imgAlt:
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTmn7NmFSp4eq7KhwI1bIzRed6-iSPu9s9RUQ&s",
     title: "Electric repairs",
     category: "Electric",
     name: "Luke",

@@ -1,7 +1,7 @@
 import type { Request, Response } from "express";
 import express from "express";
 import User from "../backend_models/User";
-import authMiddleware from "../middlewares/authMiddleware.js";
+import authMiddleware from "../middlewares/authMiddleware";
 
 const userRouter = express.Router();
 

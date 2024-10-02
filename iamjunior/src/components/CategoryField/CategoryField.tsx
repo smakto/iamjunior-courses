@@ -6,7 +6,7 @@ import { categories } from "../../data/data";
 export function CategoryField() {
   const navigate = useNavigate();
 
-  function handleClick(category) {
+  function handleClick(category: string) {
     let categoryLowercase = category.toLowerCase();
     navigate(`/search/${categoryLowercase}`);
   }

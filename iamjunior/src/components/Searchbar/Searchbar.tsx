@@ -2,9 +2,9 @@ import { useState } from "react";
 import styles from "./Searchbar.module.scss";
 
 export function Searchbar() {
-  const [searchInput, setSearchInput] = useState("");
+  const [searchInput, setSearchInput] = useState<string>();
 
-  function handleSearchInput(event) {
+  function handleSearchInput(event: React.ChangeEvent<HTMLInputElement>) {
     setSearchInput(event.target.value);
   }
 

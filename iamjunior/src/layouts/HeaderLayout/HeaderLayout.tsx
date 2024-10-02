@@ -2,7 +2,7 @@ import { Outlet } from "react-router-dom";
 import { Topbar } from "../../components/Topbar/Topbar";
 import styles from "./HeaderLayout.module.scss";
 
-export function HeaderLayout() {
+export const HeaderLayout: React.FC = () => {
   return (
     <div>
       <Topbar />
@@ -11,4 +11,4 @@ export function HeaderLayout() {
       </main>
     </div>
   );
-}
+};

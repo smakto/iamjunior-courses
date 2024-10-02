@@ -4,19 +4,19 @@ import { useLoginStore } from "./useLoginStore";
 import { useState } from "react";
 import { routes } from "../../router/router";
 
-export function LoginPage() {
+export const LoginPage: React.FC = () => {
   const { logIn } = useLoginStore();
   const [userInfo, setUserInfo] = useState({ username: "", password: "" });
   const navigate = useNavigate();
 
-  function handleFormInput(event) {
+  function handleFormInput(event: React.ChangeEvent<HTMLInputElement>) {
     setUserInfo({
       ...userInfo,
       [event.target.name]: event.target.value,
     });
   }
 
-  function handleLogin(event) {
+  function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
     logIn(userInfo.username);
     localStorage.setItem("loggedUserInfo", JSON.stringify(userInfo));
@@ -27,7 +27,7 @@ export function LoginPage() {
     <div className={styles.loginContainer}>
       <div className={styles.loginBox}>
         <h2>Login</h2>
-        <form>
+        <form onSubmit={handleLogin}>
           <div className={styles.inputGroup}>
             <label>Username</label>
             <input
@@ -50,11 +50,7 @@ export function LoginPage() {
               }}
             />
           </div>
-          <button
-            type="submit"
-            className={styles.loginButton}
-            onClick={handleLogin}
-          >
+          <button type="submit" className={styles.loginButton}>
             Login
           </button>
         </form>
@@ -65,4 +61,4 @@ export function LoginPage() {
       </div>
     </div>
   );
-}
+};
