@@ -18,7 +18,6 @@ categoriesRouter.post(
   authMiddleware,
   async (req: Request, res: Response) => {
     const newCategory = new Category(req.body);
-
     try {
       const savedCategory = await newCategory.save();
       res.status(201).json(savedCategory);

@@ -7,7 +7,8 @@ type BusinessBlueprint = {
   category: string;
   contactPerson: string;
   email: string;
-  images: string[];
+  imageUrl: string[];
+  favorite: boolean;
 };
 
 const businessSchema = new mongoose.Schema<BusinessBlueprint>(
@@ -18,7 +19,8 @@ const businessSchema = new mongoose.Schema<BusinessBlueprint>(
     category: { type: String, required: true },
     contactPerson: { type: String, required: true },
     email: { type: String, required: true },
-    images: [{ url: { type: String } }],
+    imageUrl: [{ imgUrl: { type: String } }],
+    favorite: { type: Boolean, default: false },
   },
   { timestamps: false, versionKey: false }
 );

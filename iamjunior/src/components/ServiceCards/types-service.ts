@@ -1,11 +1,11 @@
 export type Service = {
   _id: string;
-  imgUrl: string;
-  imgAlt: string;
-  title: string;
-  category: string;
   name: string;
-  surname: string;
+  about: string;
   address: string;
+  category: string;
+  contactPerson: string;
+  email: string;
+  imageUrl: { imgUrl: string }[];
   favorite: boolean;
 };
