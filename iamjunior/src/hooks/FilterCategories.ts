@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react";
-import { Service } from "../components/ServiceCards/types-service";
+import { Service } from "../types/types-service";
 
 type userFilterHookProps = {
   services: Service[];

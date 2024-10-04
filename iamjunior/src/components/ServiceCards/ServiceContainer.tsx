@@ -4,7 +4,7 @@ import styles from "./ServiceCards.module.scss";
 import { favoriteMarkers } from "../../data/data";
 import { useEffect, useState } from "react";
 import { useLocalStorage } from "../../hooks/LocalStorage";
-import { Service } from "./types-service";
+import { Service } from "../../types/types-service";
 import axios from "axios";
 
 type ServiceContainerProps = {

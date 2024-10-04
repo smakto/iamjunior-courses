@@ -3,7 +3,7 @@ import { CategoryCard } from "./CategoryCard/CategoryCard";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import { Category } from "./types-category";
+import { Category } from "../../types/types-category";
 
 export function CategoryField() {
   const [loadedCategories, setLoadedCategories] = useState<Category[] | null>(

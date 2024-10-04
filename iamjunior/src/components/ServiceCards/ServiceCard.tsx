@@ -1,5 +1,5 @@
 import styles from "./ServiceCards.module.scss";
-import { Service } from "./types-service";
+import { Service } from "../../types/types-service";
 import { favoriteMarkers } from "../../data/data";
 
 type ServiceCardProps = {

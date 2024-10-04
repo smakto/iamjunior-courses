@@ -1,4 +1,4 @@
-import { Service } from "../components/ServiceCards/types-service";
+import { Service } from "../types/types-service";
 
 export function useLocalStorage() {
   function saveFavorites(services: Service[]) {

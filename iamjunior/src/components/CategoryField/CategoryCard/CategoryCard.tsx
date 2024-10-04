@@ -1,5 +1,5 @@
 import styles from "./CategoryCard.module.scss";
-import { Category } from "../types-category";
+import { Category } from "../../../types/types-category";
 
 type CategoryCardProps = {
   icon: string;

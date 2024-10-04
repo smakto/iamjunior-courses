@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { CategoryField } from "../../components/CategoryField/CategoryField";
 import { ServiceContainer } from "../../components/ServiceCards/ServiceContainer";
-import { Service } from "../../components/ServiceCards/types-service";
+import { Service } from "../../types/types-service";
 import axios from "axios";
 import { useState, useEffect } from "react";
 
