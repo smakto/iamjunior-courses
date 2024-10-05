@@ -3,11 +3,14 @@ import styles from "./LoginPage.module.scss";
 import { useLoginStore } from "./useLoginStore";
 import { useState } from "react";
 import { routes } from "../../router/router";
+import axios from "axios";
 
 export const LoginPage: React.FC = () => {
   const { logIn } = useLoginStore();
-  const [userInfo, setUserInfo] = useState({ username: "", password: "" });
+  const [userInfo, setUserInfo] = useState({ email: "", password: "" });
   const navigate = useNavigate();
+
+  const [error, setError] = useState<string | null>(null); // Handle errors
 
   function handleFormInput(event: React.ChangeEvent<HTMLInputElement>) {
     setUserInfo({
@@ -16,11 +19,24 @@ export const LoginPage: React.FC = () => {
     });
   }
 
-  function handleLogin(event: React.FormEvent<HTMLFormElement>) {
+  async function handleLogin(event: React.FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    logIn(userInfo.username);
-    localStorage.setItem("loggedUserInfo", JSON.stringify(userInfo));
-    navigate(routes.home);
+
+    try {
+      const response = await axios.post(
+        "http://localhost:3000/auth/login",
+        userInfo
+      );
+      const { token, user } = response.data;
+      localStorage.setItem("authToken", token);
+      localStorage.setItem("loggedUserInfo", JSON.stringify(user));
+      logIn(user.email);
+      navigate(routes.home);
+    } catch (error: any) {
+      setError(
+        error.response?.data?.message || "Login failed. Please try again."
+      ); // Display error
+    }
   }
 
   return (
@@ -29,11 +45,11 @@ export const LoginPage: React.FC = () => {
         <h2>Login</h2>
         <form onSubmit={handleLogin}>
           <div className={styles.inputGroup}>
-            <label>Username</label>
+            <label>Email</label>
             <input
-              type="text"
-              name="username"
-              placeholder="Enter username"
+              type="email"
+              name="email"
+              placeholder="Enter email"
               onChange={(event) => {
                 handleFormInput(event);
               }}

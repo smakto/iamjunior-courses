@@ -32,7 +32,7 @@ export const RegisterPage: React.FC = () => {
     event.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3000/user",
+        "http://localhost:3000/auth/register",
         userToRegister
       );
     } catch (error) {

@@ -18,18 +18,6 @@ userRouter.get(
   }
 );
 
-userRouter.post("/", async (req: Request, res: Response) => {
-  const newUser = new User(req.body);
-  try {
-    const savedUser = await newUser.save();
-    res.status(201).json(savedUser);
-  } catch (error) {
-    return res
-      .status(500)
-      .json({ message: "Failed to create new user", error });
-  }
-});
-
 userRouter.put("/:id", async (req: Request, res: Response) => {
   try {
     const userToUpdate = await User.findByIdAndUpdate(req.params.id, req.body, {
