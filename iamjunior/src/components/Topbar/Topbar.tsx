@@ -1,7 +1,7 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import styles from "./Topbar.module.scss";
 import { routes } from "../../router/router";
-import { useLoginStore } from "../../pages/LoginPage/useLoginStore";
+import { useLoginStore } from "../../pages/authPages/LoginPage/useLoginStore";
 import clsx from "clsx";
 
 export function Topbar() {
