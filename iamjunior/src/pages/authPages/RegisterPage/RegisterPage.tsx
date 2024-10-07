@@ -4,29 +4,31 @@ import axios from "axios";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import { RegisterFormValues } from "../types";
 import { registerValidationSchema } from "../schemas";
+import { useCreateUser } from "../../../hooks/useCreateUser";
 
 const initialValues: RegisterFormValues = {
   name: "",
   email: "",
-  age: "",
+  age: 0,
   password: "",
   passwordConfirmation: "",
 };
 
 export const RegisterPage: React.FC = () => {
   const navigate = useNavigate();
+  const { mutate } = useCreateUser();
 
-  async function handleSubmit(values: RegisterFormValues) {
+  function handleSubmit(values: RegisterFormValues) {
     const { passwordConfirmation, ...submittedValues } = values;
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/auth/register",
-        submittedValues
-      );
-      navigate("/login");
-    } catch (error) {
-      console.error("Error during user registration:", error);
-    }
+
+    mutate(submittedValues, {
+      onSuccess: () => {
+        navigate("/login");
+      },
+      onError: (error) => {
+        console.error("Error during user registration:", error);
+      },
+    });
   }
 
   return (

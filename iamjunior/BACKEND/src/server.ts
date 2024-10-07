@@ -14,7 +14,7 @@ app.use(express.json());
 app.use("/categories", categoriesRouter);
 app.use("/business", businessRouter);
 app.use("/bookings", bookingsRouter);
-app.use("/user", userRouter);
+app.use("/users", userRouter);
 app.use("/auth", authRouter);
 
 connectToDb()
