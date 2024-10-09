@@ -15,8 +15,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react-jsx",
-    "allowImportingTsExtensions": true
+    "allowImportingTsExtensions": true,
+    //absolute import
+    "baseUrl": "./src",
+    "paths": {
+      "@/*": ["./*"]
+    }
   },
-  "include": ["src"],
+  "include": ["src", "./jest.setup.ts"],
   "references": [{ "path": "./tsconfig.node.json" }]
 }
