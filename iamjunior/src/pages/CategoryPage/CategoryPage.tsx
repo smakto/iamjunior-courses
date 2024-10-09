@@ -4,6 +4,7 @@ import { ServiceContainer } from "../../components/ServiceCards/ServiceContainer
 import { Service } from "../../types/types-service";
 import axios from "axios";
 import { useState, useEffect } from "react";
+import { useServices } from "../../hooks/useServices";
 
 export function CategoryPage() {
   let { category } = useParams<{ category: string }>();
@@ -41,7 +42,7 @@ export function CategoryPage() {
   ) : (
     <div>
       <CategoryField />
-      <ServiceContainer data={filteredData} />
+      <ServiceContainer servicesData={filteredData} />
     </div>
   );
 }

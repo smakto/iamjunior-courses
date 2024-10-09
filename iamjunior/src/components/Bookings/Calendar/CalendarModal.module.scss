@@ -1,0 +1,22 @@
+.calendarModalContainer {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgb(210, 210, 210, 0.5);
+
+  .calendarModal {
+    position: absolute;
+    right: 0;
+    top: 0;
+    opacity: 1;
+    width: 400px;
+    height: 100vh;
+    background-color: whitesmoke;
+
+    .calendar {
+      width: 100%;
+    }
+  }
+}

@@ -15,22 +15,11 @@ export const ServiceContainer: React.FC<ServiceContainerProps> = ({
   servicesData,
 }) => {
   /// TODO: implement saving favorites
-  // const [favServices, setFavServices] = useState<Service[]>([]);
-  // const { saveFavorites } = useLocalStorage();
 
   return (
     <div className={styles.serviceContainer}>
       {servicesData.map((itm) => {
-        return (
-          <ServiceCard
-            key={itm._id}
-            service={itm}
-            // favoriteMarker={
-            //   itm.favorite ? favoriteMarkers.true : favoriteMarkers.false
-            // }
-            // handleFavoriteMark={() => handleFavoriteMark(itm)}
-          />
-        );
+        return <ServiceCard key={itm._id} service={itm} />;
       })}
     </div>
   );

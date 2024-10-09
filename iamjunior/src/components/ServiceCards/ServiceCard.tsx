@@ -1,6 +1,7 @@
 import styles from "./ServiceCards.module.scss";
 import { Service } from "../../types/types-service";
-import { favoriteMarkers } from "../../data/data";
+// import { favoriteMarkers } from "../../data/data";
+import { useNavigate } from "react-router-dom";
 
 type ServiceCardProps = {
   service: Service;
@@ -13,9 +14,16 @@ export const ServiceCard: React.FC<ServiceCardProps> = ({
   // handleFavoriteMark,
   // favoriteMarker,
 }) => {
+  const navigate = useNavigate();
+
   return (
     <div className={styles.serviceCard}>
-      <div className={styles.cardTop}>
+      <div
+        className={styles.cardTop}
+        onClick={() => {
+          navigate(`/business/${service._id}`);
+        }}
+      >
         <img src={service.imageUrl[0].imgUrl}></img>
       </div>
       <div className={styles.cardBottom}>

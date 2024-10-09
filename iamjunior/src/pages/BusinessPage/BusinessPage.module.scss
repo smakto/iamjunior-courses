@@ -1,0 +1,83 @@
+.flexContainer {
+  width: 80%;
+  margin: 0 auto;
+
+  .topArea {
+    display: flex;
+    justify-content: space-between;
+
+    .topLeft {
+      display: flex;
+
+      img {
+        width: 150px;
+        height: 150px;
+        border-radius: 300px;
+        object-fit: cover;
+      }
+
+      .topMainInfo {
+        > * {
+          margin: 10px;
+        }
+
+        h2 {
+          font-size: xx-large;
+        }
+
+        .chip {
+          display: inline-block;
+          padding: 0.5rem 1rem;
+          margin: 10px;
+          border-radius: 30px;
+          background-color: #e5ddfb;
+          font-weight: 500;
+          font-size: 0.9rem;
+          text-transform: capitalize;
+        }
+
+        p:not(first-of-type) {
+          color: gray;
+        }
+      }
+    }
+
+    .topRight {
+      background-color: rgb(134, 218, 134);
+      width: 40%;
+    }
+  }
+
+  .mainArea {
+    margin-top: 15px;
+    display: flex;
+    justify-content: space-between;
+
+    .mainLeft {
+      width: 60%;
+      height: 200px;
+
+      .businessDescription {
+        background-color: rgb(231, 231, 140);
+        height: 100px;
+      }
+
+      .galleryContainer {
+        background-color: rgb(227, 142, 222);
+        height: 100px;
+      }
+    }
+
+    .mainRight {
+      background-color: aqua;
+      width: 40%;
+    }
+  }
+}
+
+.placeholder {
+  top: 15px;
+  padding-top: 40px;
+  font-weight: bold;
+  color: red;
+}
