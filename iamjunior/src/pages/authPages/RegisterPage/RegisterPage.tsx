@@ -9,7 +9,7 @@ import { useCreateUser } from "../../../hooks/useCreateUser";
 const initialValues: RegisterFormValues = {
   name: "",
   email: "",
-  age: 0,
+  age: "",
   password: "",
   passwordConfirmation: "",
 };
@@ -20,8 +20,14 @@ export const RegisterPage: React.FC = () => {
 
   function handleSubmit(values: RegisterFormValues) {
     const { passwordConfirmation, ...submittedValues } = values;
+    const registerUserValues = {
+      name: submittedValues.name,
+      email: submittedValues.email,
+      age: parseInt(submittedValues.age),
+      password: submittedValues.password,
+    };
 
-    mutate(submittedValues, {
+    mutate(registerUserValues, {
       onSuccess: () => {
         navigate("/login");
       },

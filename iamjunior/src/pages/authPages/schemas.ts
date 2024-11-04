@@ -8,11 +8,22 @@ export const registerValidationSchema = Yup.object().shape({
   email: Yup.string()
     .email("Netinkamas el. paštas")
     .required("Privalomas laukelis"),
-  age: Yup.number()
+  age: Yup.string()
+    .matches(/^[0-9]+$/)
     .typeError("Amžius turi būti skaičius")
-    .min(18, "Amžius turi būti bent 18 metų")
-    .max(120, "Amžius negali viršyti 120 metų")
-    .required("Įveskite amžių"),
+    .required("Įveskite amžių")
+    .test("min-age", "Amžius turi būti bent 18 metų.", (value: string) => {
+      const minAge = parseInt(value, 10);
+      return minAge >= 18;
+    })
+    .test(
+      "max-age",
+      "Amžius turi būti ne daugiau, nei 120 metų.",
+      (value: string) => {
+        const maxAge = parseInt(value, 10);
+        return maxAge <= 120;
+      }
+    ),
   password: Yup.string()
     .min(8, "Slaptažodis per trumpas - minimalus ilgis yra 8 simboliai")
     .required("Privalomas laukelis"),

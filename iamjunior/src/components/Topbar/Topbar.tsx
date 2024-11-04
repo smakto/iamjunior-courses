@@ -16,7 +16,7 @@ export function Topbar() {
     navigate(routes.login);
   }
 
-  console.log(currentUser);
+  // console.log(currentUser);
 
   return (
     <header className={styles.header}>

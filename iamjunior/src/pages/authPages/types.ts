@@ -1,7 +1,7 @@
 export type RegisterFormValues = {
   name: string;
   email: string;
-  age: number;
+  age: string;
   password: string;
   passwordConfirmation: string;
 };
