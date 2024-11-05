@@ -9,14 +9,14 @@ export function Topbar() {
   const navigate = useNavigate();
   const { currentUser, logged, logOut } = useLoginStore();
 
+  console.log(currentUser);
+
   // To review based on comments:
   function handleLogout() {
     logOut();
     localStorage.removeItem("loggedUserInfo");
     navigate(routes.login);
   }
-
-  // console.log(currentUser);
 
   return (
     <header className={styles.header}>
@@ -48,9 +48,7 @@ export function Topbar() {
       </div>
       <div className={styles.headerRight}>
         {logged ? (
-          <Avatar onLogout={handleLogout}>
-            {currentUser && currentUser[0]}
-          </Avatar>
+          <Avatar onLogout={handleLogout}>{currentUser[0]}</Avatar>
         ) : (
           <button onClick={() => navigate(routes.login)}>
             Login / Sign Up

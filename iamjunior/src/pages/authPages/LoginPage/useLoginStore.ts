@@ -8,12 +8,10 @@ type UserState = {
 };
 
 const userInfo = localStorage.getItem("loggedUserInfo");
-const parsedUserInfo: { username: string } | null = userInfo
-  ? JSON.parse(userInfo)
-  : null;
+const parsedUserInfo = userInfo ? JSON.parse(userInfo) : null;
 
 export const useLoginStore = create<UserState>((set) => ({
-  currentUser: parsedUserInfo ? parsedUserInfo.username : "",
+  currentUser: parsedUserInfo ? parsedUserInfo.name : "",
   logged: parsedUserInfo ? true : false,
   logIn: (newUser: string) => set({ currentUser: newUser, logged: true }),
   logOut: () => set({ currentUser: "", logged: false }),
