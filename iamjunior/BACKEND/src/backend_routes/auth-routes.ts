@@ -2,14 +2,23 @@ import express from "express";
 import type { Request, Response } from "express";
 import User from "../backend_models/User";
 import { generateToken } from "../utilities/password";
+import { validate } from "deep-email-validator";
 
 const authRouter = express.Router();
 
 authRouter.post("/register", async (req: Request, res: Response) => {
   try {
     let newUser = req.body;
+    const validationResult = await validate(newUser.email);
     const user = await User.findOne({ email: newUser.email });
-    if (user) {
+
+    if (!validationResult.valid) {
+      return res.status(400).send({
+        status: "error",
+        message: "Email is not valid.",
+        reason: validationResult.reason,
+      });
+    } else if (user) {
       return res.status(400).json({ message: "User already exists" });
     } else {
       newUser = new User(newUser);
