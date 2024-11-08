@@ -20,7 +20,8 @@ export const HomePage: React.FC = () => {
           item.name.toLowerCase().includes(input.toLowerCase()) ||
           item.contactPerson.toLowerCase().includes(input.toLowerCase())
       );
-      setSearchedData(searchResults);
+
+      searchResults.length < 0 && setSearchedData(searchResults);
     }
   }
 
