@@ -21,7 +21,7 @@ export const HomePage: React.FC = () => {
           item.contactPerson.toLowerCase().includes(input.toLowerCase())
       );
 
-      searchResults.length < 0 && setSearchedData(searchResults);
+      searchResults.length > 0 && setSearchedData(searchResults);
     }
   }
 
