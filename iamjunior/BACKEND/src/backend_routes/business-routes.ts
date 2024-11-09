@@ -50,7 +50,7 @@ businessRouter.post(
 
 businessRouter.put(
   "/:id",
-  authMiddleware,
+  // authMiddleware,
   async (req: Request, res: Response) => {
     try {
       const updatedBusiness = await Business.findByIdAndUpdate(

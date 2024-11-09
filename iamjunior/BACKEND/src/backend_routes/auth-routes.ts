@@ -57,7 +57,7 @@ authRouter.post("/login", async (req: Request, res: Response) => {
       .status(200)
       .json({ status: "success", token, user: userWithoutPassword });
   } catch (error) {
-    console.error("Login Error:", error); // Log the full error for debugging
+    console.error("Login Error:", error);
     return res.status(500).json({ message: "Error logging in.", error });
   }
 });

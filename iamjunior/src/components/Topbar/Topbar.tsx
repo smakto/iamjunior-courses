@@ -9,8 +9,6 @@ export function Topbar() {
   const navigate = useNavigate();
   const { currentUser, logged, logOut } = useLoginStore();
 
-  console.log(currentUser);
-
   // To review based on comments:
   function handleLogout() {
     logOut();

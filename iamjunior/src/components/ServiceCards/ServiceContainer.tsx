@@ -14,7 +14,9 @@ type ServiceContainerProps = {
 export const ServiceContainer: React.FC<ServiceContainerProps> = ({
   servicesData,
 }) => {
-  /// TODO: implement saving favorites
+  servicesData.forEach((item) => {
+    console.log(`${item.category}, fav: ${item.favorite}`);
+  });
 
   return (
     <div className={styles.serviceContainer}>
