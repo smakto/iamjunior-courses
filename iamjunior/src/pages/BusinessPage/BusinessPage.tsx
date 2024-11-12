@@ -4,6 +4,14 @@ import { useState } from "react";
 import CalendarModal from "../../components/Bookings/Calendar/CalendarModal";
 import ErrorPage from "../ErrorPage/ErrorPage";
 import { useService } from "../../hooks/useServices";
+import {
+  FaLocationDot,
+  FaEnvelope,
+  FaUpload,
+  FaUserLarge,
+  FaClock,
+  FaCalendarDays,
+} from "react-icons/fa6";
 
 const BusinessPage = () => {
   const params = useParams();
@@ -13,8 +21,6 @@ const BusinessPage = () => {
 
   if (isLoading) return <div>Loading...</div>;
   if (error) return <ErrorPage />;
-
-  console.log(data);
 
   return (
     <>
@@ -26,34 +32,57 @@ const BusinessPage = () => {
               <div className={styles.topMainInfo}>
                 <p className={styles.chip}>{data.category}</p>
                 <h2>{data.name}</h2>
-                <p>{data.address}</p>
-                <p>{data.email}</p>
+                <p>
+                  <FaLocationDot />
+                  <span /> {data.address}
+                </p>
+                <p>
+                  <FaEnvelope /> <span />
+                  {data.email}
+                </p>
               </div>
             </div>
             <div className={styles.topRight}>
-              <p className={styles.placeholder}>
-                TODO: upload button / contact person / availability to be added
-              </p>
+              <div>
+                <button>
+                  <FaUpload />
+                </button>
+                <p>
+                  <FaUserLarge />
+                  {data.contactPerson}
+                </p>
+                <p>
+                  <FaClock />
+                  Available from
+                  <span style={{ color: "red" }}> INSERT TIME</span>
+                </p>
+              </div>
             </div>
           </div>
           <div className={styles.mainArea}>
             <div className={styles.mainLeft}>
               <div className={styles.businessDescription}>
-                <p className={styles.placeholder}>TODO: business description</p>
+                <h3>Description</h3>
+                <p>{data.about}</p>
               </div>
               <div className={styles.galleryContainer}>
-                <p className={styles.placeholder}>TODO: add gallery</p>
+                <h3>Gallery</h3>
               </div>
             </div>
             <div className={styles.mainRight}>
-              <button
-                onClick={() => {
-                  setCalendarOpen(!calendarOpen);
-                }}
-              >
-                BOOK APPOINTMENT
-              </button>
-              <p className={styles.placeholder}>TODO: similar businesses</p>
+              <div>
+                <button
+                  onClick={() => {
+                    setCalendarOpen(!calendarOpen);
+                  }}
+                >
+                  <FaCalendarDays /> <span />
+                  BOOK APPOINTMENT
+                </button>
+              </div>
+              <div>
+                <h3>Similar services</h3>
+              </div>
             </div>
           </div>
         </div>
