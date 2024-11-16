@@ -88,12 +88,17 @@ const BusinessPage = () => {
         </div>
       )}
       <>
-        <CalendarModal
-          calendarOpen={calendarOpen}
-          closeCalendar={() => {
-            setCalendarOpen(false);
-          }}
-        />
+        {data && (
+          <CalendarModal
+            businessId={data._id}
+            userEmail={data.email}
+            userName={data.contactPerson}
+            calendarOpen={calendarOpen}
+            closeCalendar={() => {
+              setCalendarOpen(false);
+            }}
+          />
+        )}
       </>
     </>
   );

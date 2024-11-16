@@ -5,6 +5,7 @@
   width: 100vw;
   height: 100vh;
   background-color: rgb(210, 210, 210, 0.5);
+  z-index: 1000;
 
   .calendarModal {
     position: absolute;
@@ -19,4 +20,8 @@
       width: 100%;
     }
   }
+}
+
+.timeRanges {
+  columns: 7;
 }
