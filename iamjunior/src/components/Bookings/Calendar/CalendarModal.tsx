@@ -3,9 +3,7 @@ import styles from "./CalendarModal.module.scss";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Booking } from "@/types/type-booking";
-
-// type ValuePiece = Date | null;
-// type Value = ValuePiece | [ValuePiece, ValuePiece];
+import { useBookings } from "@/hooks/useBookings";
 
 const timeRanges = [
   "08:00-09:00",
@@ -37,6 +35,10 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
 }) => {
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedTime, setSelectedTime] = useState<string>("");
+  const { data, error, isLoading } = useBookings();
+  // console.log(data);
+  let today = new Date();
+  today.setDate(today.getDate() + 1);
 
   const [newBooking, setNewBooking] = useState<Booking>({
     businessId: businessId,
@@ -82,7 +84,7 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
               onDateChange(value);
             }}
             value={selectedDate}
-            minDate={new Date()}
+            minDate={today}
           />
           <div className={styles.availableSlots}>
             <h5>Availablity</h5>

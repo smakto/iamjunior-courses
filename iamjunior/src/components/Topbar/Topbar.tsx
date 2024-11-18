@@ -46,7 +46,7 @@ export function Topbar() {
       </div>
       <div className={styles.headerRight}>
         {logged ? (
-          <Avatar onLogout={handleLogout}>{currentUser[0]}</Avatar>
+          <Avatar onLogout={handleLogout}>{currentUser.name[0]}</Avatar>
         ) : (
           <button onClick={() => navigate(routes.login)}>
             Login / Sign Up

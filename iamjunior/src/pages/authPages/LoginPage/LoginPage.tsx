@@ -25,7 +25,7 @@ export const LoginPage: React.FC = () => {
       const { token, user } = response.data;
       localStorage.setItem("authToken", token);
       localStorage.setItem("loggedUserInfo", JSON.stringify(user));
-      logIn(user.name);
+      logIn({ name: user.name, email: user.email });
       navigate(routes.home);
     } catch (error) {
       console.error({ message: "Login failed.", error });

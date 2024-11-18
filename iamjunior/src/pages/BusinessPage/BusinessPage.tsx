@@ -22,6 +22,9 @@ const BusinessPage = () => {
   if (isLoading) return <div>Loading...</div>;
   if (error) return <ErrorPage />;
 
+  // let testDate = new Date(2025, 5, 30);
+  // console.log(testDate);
+
   return (
     <>
       {data && (

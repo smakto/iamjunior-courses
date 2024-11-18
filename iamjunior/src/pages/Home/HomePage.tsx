@@ -2,8 +2,9 @@ import { Searchbar } from "../../components/Searchbar/Searchbar";
 import { CategoryField } from "../../components/CategoryField/CategoryField";
 import { ServiceContainer } from "../../components/ServiceCards/ServiceContainer";
 import { useServices } from "../../hooks/useServices";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Service } from "@/types/types-service";
+import { useLoginStore } from "../authPages/LoginPage/useLoginStore";
 
 export const HomePage: React.FC = () => {
   const { data, error, isLoading } = useServices();

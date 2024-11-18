@@ -4,14 +4,18 @@ const bookingsRouter = express.Router();
 import Booking from "../backend_models/Bookings";
 import authMiddleware from "../middlewares/authMiddleware";
 
-bookingsRouter.get("/", authMiddleware, async (req: Request, res: Response) => {
-  try {
-    const bookings = await Booking.find();
-    res.status(200).json(bookings);
-  } catch (error) {
-    res.status(500).send(error);
+bookingsRouter.get(
+  "/",
+  //  authMiddleware,
+  async (req: Request, res: Response) => {
+    try {
+      const bookings = await Booking.find();
+      res.status(200).json(bookings);
+    } catch (error) {
+      res.status(500).send(error);
+    }
   }
-});
+);
 
 bookingsRouter.get(
   "/user/:email",
