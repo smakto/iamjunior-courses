@@ -3,7 +3,8 @@ import styles from "./CalendarModal.module.scss";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 import { Booking } from "@/types/type-booking";
-import { useBookings } from "@/hooks/useBookings";
+import { useBookings, useCreateBooking } from "@/hooks/useBookings";
+import { useLoginStore } from "@/pages/authPages/LoginPage/useLoginStore";
 
 const timeRanges = [
   "08:00-09:00",
@@ -36,7 +37,10 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
   const [selectedDate, setSelectedDate] = useState<Date>(new Date());
   const [selectedTime, setSelectedTime] = useState<string>("");
   const { data, error, isLoading } = useBookings();
-  // console.log(data);
+  const { mutate } = useCreateBooking();
+
+  const { currentUser } = useLoginStore();
+
   let today = new Date();
   today.setDate(today.getDate() + 1);
 
@@ -44,8 +48,8 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
     businessId: businessId,
     date: selectedDate,
     time: selectedTime,
-    userEmail: userEmail,
-    userName: userName,
+    userEmail: currentUser.email,
+    userName: currentUser.name,
     status: "New",
   });
 
@@ -66,7 +70,12 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
   }
 
   function confirmBooking() {
-    console.log(newBooking);
+    mutate(newBooking, {
+      onSuccess: () => alert("Success"),
+      onError: (error) => {
+        console.error("Error creating booking", error);
+      },
+    });
   }
 
   return (
@@ -89,18 +98,20 @@ const CalendarModal: React.FC<CalendarModalProps> = ({
           <div className={styles.availableSlots}>
             <h5>Availablity</h5>
             <div className={styles.timeRanges}>
-              {timeRanges.map((range) => {
-                return (
-                  <button
-                    key={range}
-                    onClick={() => {
-                      onTimeChange(range);
-                    }}
-                  >
-                    {range}
-                  </button>
-                );
-              })}
+              <select
+                onChange={(e) => {
+                  onTimeChange(e.target.value);
+                }}
+              >
+                <option style={{ display: "none" }}>Select time</option>
+                {timeRanges.map((range) => {
+                  return (
+                    <option key={range} value={range}>
+                      {range}
+                    </option>
+                  );
+                })}
+              </select>
             </div>
           </div>
           <button

@@ -54,6 +54,20 @@ bookingsRouter.delete(
 );
 
 bookingsRouter.get(
+  "/business/:businessId",
+  async (req: Request, res: Response) => {
+    try {
+      const businessBookings = await Booking.find({
+        businessId: req.params.businessId,
+      });
+      res.status(200).json(businessBookings);
+    } catch (error) {
+      res.status(500).send({ message: "Server error.", error });
+    }
+  }
+);
+
+bookingsRouter.get(
   "/business/:businessId/date/:date",
   async (req: Request, res: Response) => {
     try {

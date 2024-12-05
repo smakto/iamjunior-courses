@@ -12,36 +12,44 @@ import {
   FaClock,
   FaCalendarDays,
 } from "react-icons/fa6";
+import { useBusinessBookings } from "@/hooks/useBookings";
 
 const BusinessPage = () => {
   const params = useParams();
-  const { data, isLoading, error } = useService(params.id ?? "");
+  const {
+    data: serviceData,
+    isLoading: isServiceLoading,
+    error: serviceError,
+  } = useService(params.id ?? "");
+
+  const { data: bookingsData } = useBusinessBookings(params.id ?? "");
+  console.log(bookingsData);
 
   const [calendarOpen, setCalendarOpen] = useState(false);
 
-  if (isLoading) return <div>Loading...</div>;
-  if (error) return <ErrorPage />;
-
-  // let testDate = new Date(2025, 5, 30);
-  // console.log(testDate);
+  if (isServiceLoading) return <div>Loading...</div>;
+  if (serviceError) return <ErrorPage />;
 
   return (
     <>
-      {data && (
+      {serviceData && (
         <div className={styles.flexContainer}>
           <div className={styles.topArea}>
             <div className={styles.topLeft}>
-              <img src={data.imageUrl[0].imgUrl} alt={data.name} />
+              <img
+                src={serviceData.imageUrl[0].imgUrl}
+                alt={serviceData.name}
+              />
               <div className={styles.topMainInfo}>
-                <p className={styles.chip}>{data.category}</p>
-                <h2>{data.name}</h2>
+                <p className={styles.chip}>{serviceData.category}</p>
+                <h2>{serviceData.name}</h2>
                 <p>
                   <FaLocationDot />
-                  <span /> {data.address}
+                  <span /> {serviceData.address}
                 </p>
                 <p>
                   <FaEnvelope /> <span />
-                  {data.email}
+                  {serviceData.email}
                 </p>
               </div>
             </div>
@@ -52,7 +60,7 @@ const BusinessPage = () => {
                 </button>
                 <p>
                   <FaUserLarge />
-                  {data.contactPerson}
+                  {serviceData.contactPerson}
                 </p>
                 <p>
                   <FaClock />
@@ -66,7 +74,7 @@ const BusinessPage = () => {
             <div className={styles.mainLeft}>
               <div className={styles.businessDescription}>
                 <h3>Description</h3>
-                <p>{data.about}</p>
+                <p>{serviceData.about}</p>
               </div>
               <div className={styles.galleryContainer}>
                 <h3>Gallery</h3>
@@ -91,11 +99,11 @@ const BusinessPage = () => {
         </div>
       )}
       <>
-        {data && (
+        {serviceData && (
           <CalendarModal
-            businessId={data._id}
-            userEmail={data.email}
-            userName={data.contactPerson}
+            businessId={serviceData._id}
+            userEmail={serviceData.email}
+            userName={serviceData.contactPerson}
             calendarOpen={calendarOpen}
             closeCalendar={() => {
               setCalendarOpen(false);
